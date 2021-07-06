@@ -1,0 +1,63 @@
+@startuml
+enum ImpulsarClientPluginEvents {
+    READY
+    TEXT_RECIVED
+    ANIMATION_RECIVED
+}
+enum ImpulsarClientPluginReceiveTextName {
+    SUBTITLE
+}
+enum ImpulsarClientPluginReceiveAnimationName {
+    DEFAULT
+}
+class ImpulsarClientPlugin extends EventEmitter {
+    +uuid: string
+    +name: string
+    +init: () => void
+    +log: (input: ImpulsarClientPluginLog) => void
+    +receiveText: (input: ImpulsarClientPluginReceiveText) => void
+    +receiveAnimation: (input: ImpulsarClientPluginReceiveAnimation) => void
+    +streamAudio: (input: ImpulsarClientPluginStreamAudio) => void
+}
+enum ImpulsarClientStreamDataName {
+    STREAM_AUDIO
+}
+enum ImpulsarClientSendDataName {
+    LOG
+}
+enum ImpulsarClientReciveDataName {
+    SUBTITLE
+}
+class ImpulsarClient {
+    +debug: boolean
+    +plugins: ImpulsarClientPlugin[]
+    +host: string
+    +autoConnect: boolean
+    +#io: any
+    +#ioStream: SocketStream
+    +connected: boolean
+    +#log: (out: string) => void
+    +#pluginsReady: ({ plugin }: { plugin: ImpulsarClientPlugin; }) => void
+    +#pluginsLog: ({ plugin, input }: { plugin: ImpulsarClientPlugin; input: ImpulsarClientPluginLog; }) => void
+    +#pluginsTextRecived: ({ plugin, input }: { plugin: ImpulsarClientPlugin; input: ImpulsarClientPluginReceiveText; }) => void
+    +#pluginsAnimationRecived: ({ plugin, input }: { plugin: ImpulsarClientPlugin; input: ImpulsarClientPluginReceiveAnimation; }) => void
+    +#pluginsStreamAudio: ({ plugin, input }: { plugin: ImpulsarClientPlugin; input: ImpulsarClientPluginStreamAudio; }) => void
+    +#pluginsInit: () => void
+    +#onIOConnect: () => void
+    +#onIODisconnect: () => void
+    +#onReciveSubtitle: ({ data }: { data: string; }) => void
+    +#onReciveDefaultAnimation: ({ data }: { data: any; }) => void
+    +#initIO: () => void
+    +#init: () => void
+    +connect: () => void
+    +disconnect: () => void
+    +stream: (streamData: ImpulsarClientStreamData) => boolean
+    +send: (sendData: ImpulsarClientSendData) => boolean
+}
+class ImpulsarPluginSubtitle extends ImpulsarClientPlugin {
+    +name: string
+    +element: Element
+    +receiveText: (input: ImpulsarClientPluginReceiveText) => void
+    +render: (data: string) => void
+}
+@enduml

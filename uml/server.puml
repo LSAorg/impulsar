@@ -1,0 +1,25 @@
+@startuml
+class ImpulsarServer {
+    +app: any
+    +server: Server
+    +serverPort: number
+    +io: IOServer<DefaultEventsMap, DefaultEventsMap>
+    +ioStream: SocketStream
+    +sampleRate: number
+    +voskModel: any
+    +googleSpeechClient: SpeechClient
+    +googleSpeechSreamRecognitionConfig: google.cloud.speech.v1.IStreamingRecognitionConfig
+    +defineHttpRoutes: () => void
+    +defineClientEvents: (client: Socket) => void
+    +onClientConnected: (client: Socket) => void
+    +onClientStreamAudio: (client: Socket, stream: any) => void
+    +defineSocketEvents: () => void
+    +debugAudioStream: (audio: any) => void
+    +recognizeTextStream: (text: any, cb: any) => void
+    +sanitizeTextStream: (text: any, cb: any) => void
+    +translateTextSteam: (text: any, cb: any) => void
+    +transcribeAudioStream: (audio: any, cb: any) => void
+    +transcribeOfflineAudioStream: (audio: any, cb: any) => void
+    +init: () => void
+}
+@enduml

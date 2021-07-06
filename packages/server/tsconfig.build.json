@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "../pulumi/api/docker/dist/",
+    "sourceMap": false,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "tests"
+  ],
+  "include": [
+    "src/**/*"
+  ]
+}

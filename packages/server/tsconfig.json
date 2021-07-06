@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist/",
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "@impulsar/client/*": ["../client/dist/*"],
+    },
+    "noImplicitAny": false,
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

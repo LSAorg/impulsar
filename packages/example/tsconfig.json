@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": ["es2019", "dom"],
+    "allowJs": false,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "target": "es2016",
+    "module": "es2020",
+    "outDir": "./dist",
+    "paths": {
+      "@impulsar/client/*": ["../client/dist/*"],
+    },
+    "incremental": true,
+    "noEmitOnError": false,
+    "types": ["node"]
+  }
+}
