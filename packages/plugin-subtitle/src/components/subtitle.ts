@@ -20,7 +20,7 @@ export class ImpulsarPluginSubtitle extends ImpulsarClientPlugin {
   }
 
   render = (data: string) => {
-    const list = data.split('.').map(x => `${x}.`)
+    const list = data.split('.').map(x => `${x}`)
     const listHtml = list.map(x => `<li>${x}</li>`)
     this.element.innerHTML = `<ul>${listHtml}</ul>`
   }

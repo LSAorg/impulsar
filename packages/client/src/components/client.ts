@@ -96,7 +96,7 @@ export class ImpulsarClient {
     this.#log('recive default animation')
     this.plugins.forEach(plugin => {
       plugin.receiveAnimation({
-        name: ImpulsarClientPluginReceiveAnimationName.DEFAULT,
+        name: ImpulsarClientPluginReceiveAnimationName.ANIMATION,
         data: data
       })
     })
@@ -106,7 +106,7 @@ export class ImpulsarClient {
     this.#io.on('connect', this.#onIOConnect)
     this.#io.on('disconnect', this.#onIODisconnect)
     this.#io.on(ImpulsarClientReciveDataName.SUBTITLE, this.#onReciveSubtitle)
-    this.#io.on(ImpulsarClientPluginReceiveAnimationName.DEFAULT, this.#onReciveDefaultAnimation)
+    this.#io.on(ImpulsarClientPluginReceiveAnimationName.ANIMATION, this.#onReciveDefaultAnimation)
   }
 
   #init = () => {

@@ -14,12 +14,12 @@ export type ImpulsarClientPluginReceiveText = {
 }
 
 export enum ImpulsarClientPluginReceiveAnimationName {
-  DEFAULT = 'default'
+  ANIMATION = 'animation'
 }
 
 export type ImpulsarClientPluginReceiveAnimation = {
   name: ImpulsarClientPluginReceiveAnimationName
-  data: any
+  data: string[]
 }
 
 export type ImpulsarClientPluginStreamAudio = {

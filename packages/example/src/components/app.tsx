@@ -149,7 +149,7 @@ export const App: React.FC = () => {
 
     impulsarRef.current = new ImpulsarClient({
       autoConnect: true,
-      debug: true,
+      debug: false,
       plugins: [
         examplePlugin,
         impulsarPluginRecordRef.current,

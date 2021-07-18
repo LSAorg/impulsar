@@ -7,8 +7,7 @@ import { SpeechClient } from '@google-cloud/speech'
 import { google } from '@google-cloud/speech/build/protos/protos'
 import { SocketStream } from 'stream-socket.io'
 import { AudioIO, SampleFormat16Bit } from 'naudiodon'
-import { Console } from 'console'
-
+import { Dictionary } from '../data/dictionary'
 export class ImpulsarServer {
   app: any
 
@@ -89,11 +88,21 @@ export class ImpulsarServer {
       if (error != null) return
 
       if (type === 'result') {
-        client.emit('subtitle', { data: result.text })
+        if (result.text !== '') {
+          client.emit('subtitle', { data: result.text })
+        }
       }
       if (type === 'partial') {
-        client.emit('subtitle', { data: result.partial })
+        if (result.partial !== '') {
+          client.emit('subtitle', { data: result.partial })
+        }
       }
+
+      this.translateTextSteam(result, (resultAnimations: string[]) => {
+        if (resultAnimations.length) {
+          client.emit('animation', { data: resultAnimations })
+        }
+      })
 
       console.log('result', result)
     })
@@ -122,11 +131,17 @@ export class ImpulsarServer {
     output.start()
   }
 
-  recognizeTextStream = (text, cb) => {}
-
-  sanitizeTextStream = (text, cb) => {}
-
-  translateTextSteam = (text, cb) => {}
+  translateTextSteam = (result, cb) => {
+    const text = result.text || result.partial || ''
+    const words = text.split(' ')
+    const animations = words.reduce((out, word) => {
+      if (Dictionary[word]) {
+        out.push(Dictionary[word])
+      }
+      return out
+    }, [])
+    cb(animations)
+  }
 
   transcribeAudioStream = (audio, cb) => {
     const recognizeStream = this.googleSpeechClient.streamingRecognize(this.googleSpeechSreamRecognitionConfig)
