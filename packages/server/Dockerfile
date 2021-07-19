@@ -1,4 +1,7 @@
-FROM node:14.17.3
+FROM node:14.17.3-buster
+
+RUN apt-get update \
+    && apt-get install -y libasound2 \
 
 WORKDIR /usr/src/app
 EXPOSE 80
