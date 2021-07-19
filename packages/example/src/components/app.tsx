@@ -26,8 +26,6 @@ const Title = styled(Typography)`
 `
 const Content = styled(Paper)`
   position: relative;
-  width: 100vw;
-  height: 100vh;
   flex-grow: 1;
 `
 
@@ -53,9 +51,10 @@ const Loading = styled.div`
 
 const Subtitle = styled.div`
   position: absolute;
-  bottom: 20px;
+  bottom: 10vh;
   width: 100vw;
-  font-size: 2.5rem;
+  font-weight: bold;
+  font-size: 3.5rem;
   text-align: center;
   color: white;
   -webkit-text-stroke: 1px black;
@@ -165,8 +164,6 @@ export const App: React.FC = () => {
 
     forceRender()
   }, [])
-
-  console.log('impulsarRef.current', impulsarRef.current)
 
   return (
     <React.StrictMode>

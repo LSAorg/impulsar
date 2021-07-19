@@ -4,6 +4,7 @@ import { ImpulsarPluginSubtitleOptions } from '../types/subtitle'
 export class ImpulsarPluginSubtitle extends ImpulsarClientPlugin {
   name: string = 'ImpulsarPluginSubtitle'
   element: Element
+  timeout: any
 
   constructor (options: ImpulsarPluginSubtitleOptions) {
     super()
@@ -13,10 +14,22 @@ export class ImpulsarPluginSubtitle extends ImpulsarClientPlugin {
   receiveText = (input: ImpulsarClientPluginReceiveText) => {
     if (input.name !== ImpulsarClientPluginReceiveTextName.SUBTITLE) return
     this.render(input.data)
+    this.scheduleCleaning()
     this.emit(ImpulsarClientPluginEvents.TEXT_RECIVED, {
       input: input,
       plugin: this
     })
+  }
+
+  scheduleCleaning = () => {
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+    }
+    this.timeout = setTimeout(this.clean, 10 * 1000)
+  }
+
+  clean = () => {
+    this.render('')
   }
 
   render = (data: string) => {

@@ -65,7 +65,15 @@ export class ImpulsarPluginWebGLRender extends ImpulsarClientPlugin {
     this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
     this.renderer.setAnimationLoop(this.renderLoop)
 
+    window.addEventListener('resize', this.onWindowsResize, false)
+
     this.element.appendChild(this.renderer.domElement)
+  }
+
+  onWindowsResize = () => {
+    this.camera.aspect = this.element.clientWidth / this.element.clientHeight
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
   }
 
   init = async (options: ImpulsarClientOptions) => {
