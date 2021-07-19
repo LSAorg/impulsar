@@ -134,8 +134,6 @@ export const App: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log('subtitleLocation', subtitleLocation.current)
-
     const examplePlugin = new ImpulsarClientPlugin()
     impulsarPluginRecordRef.current = new ImpulsarPluginRecord({ autoStart: true })
 
@@ -147,9 +145,14 @@ export const App: React.FC = () => {
       element: animationLocation.current as Element
     })
 
+    const impulsarServer = window.location.toString().includes('localhost')
+      ? 'http://localhost:3000'
+      : 'https://impulsar-server.herokuapp.com'
+
     impulsarRef.current = new ImpulsarClient({
       autoConnect: true,
       debug: false,
+      host: impulsarServer,
       plugins: [
         examplePlugin,
         impulsarPluginRecordRef.current,
