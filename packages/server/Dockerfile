@@ -4,7 +4,7 @@ RUN apt-get update \
     && apt-get install -y libasound2
 
 WORKDIR /usr/src/app
-EXPOSE 80
+EXPOSE 3000
 ENV NODE_ENV=production
 
 COPY dist/package*.json ./

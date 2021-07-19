@@ -34,7 +34,7 @@ export class ImpulsarServer {
 
     // Http Server
     this.server = createServer(this.app)
-    this.serverPort = process.env.NODE_ENV === 'production' ? 80 : 3000
+    this.serverPort = parseInt(process.env.PORT || '3000')
 
     // SocketIO Server
     this.io = new IOServer(this.server, {
