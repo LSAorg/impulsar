@@ -5,6 +5,8 @@ export type ImpulsarClientOptions = {
   host?: string
   autoConnect?: boolean
   plugins?: ImpulsarClientPlugin[]
+  onConnected?: () => void
+  onDisconnected?: () => void
 }
 
 export enum ImpulsarClientStreamDataName {

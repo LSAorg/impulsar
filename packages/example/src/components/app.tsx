@@ -158,11 +158,15 @@ export const App: React.FC = () => {
         impulsarPluginRecordRef.current,
         impulsarPluginSubtitleRef.current,
         impulsarPluginWebGLRenderRef.current
-      ]
+      ],
+      onConnected: forceRender,
+      onDisconnected: forceRender
     })
 
     forceRender()
   }, [])
+
+  console.log('impulsarRef.current', impulsarRef.current)
 
   return (
     <React.StrictMode>

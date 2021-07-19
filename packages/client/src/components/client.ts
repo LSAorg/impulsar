@@ -15,11 +15,17 @@ export class ImpulsarClient {
   #ioStream: SocketStream
   connected: boolean = false
 
+  onConnected?: () => void
+  onDisconnected?: () => void
+
   constructor (options: ImpulsarClientOptions) {
     this.debug = options.debug ?? defaults.debug
     this.plugins = options.plugins ?? []
     this.host = options.host ?? defaults.host
     this.autoConnect = options.autoConnect ?? defaults.autoConnect
+    this.onConnected = options.onConnected
+    this.onDisconnected = options.onDisconnected
+
     this.#io = SocketClient(this.host, {
       autoConnect: false
     })
@@ -74,11 +80,17 @@ export class ImpulsarClient {
 
   #onIOConnect = () => {
     this.connected = true
+    if (this.onConnected) {
+      this.onConnected()
+    }
     this.#log('io connected')
   }
 
   #onIODisconnect = () => {
     this.connected = false
+    if (this.onDisconnected) {
+      this.onDisconnected()
+    }
     this.#log('io disconnected')
   }
 
