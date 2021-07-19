@@ -66,10 +66,6 @@ export class ImpulsarPluginWebGLRender extends ImpulsarClientPlugin {
     this.renderer.setAnimationLoop(this.renderLoop)
 
     this.element.appendChild(this.renderer.domElement)
-
-    setTimeout(() => {
-      this.animationQueue = ['hola', 'si', 'no', 'hola']
-    }, 3000)
   }
 
   init = async (options: ImpulsarClientOptions) => {
