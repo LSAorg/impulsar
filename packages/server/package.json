@@ -4,10 +4,10 @@
   "description": "Websocket Server Bridge",
   "main": "server.js",
   "scripts": {
-    "start:local": "DEBUG=knex:* NODE_ENVIRONMENT=local NODE_ENVIRONMENT=local nodemon | pino-tiny",
+    "start:local": "NODE_ENVIRONMENT=local NODE_ENVIRONMENT=local nodemon | pino-tiny",
     "start:built": "NODE_ENV=production node dist/index.js | pino-tiny",
     "start": "node index.js",
-    "build": "npm run clean && npm run compile",
+    "build": "npm run clean && npm run compile && cp -r public ./dist",
     "postbuild": "cp package*.json dist/",
     "compile": "tsc",
     "clean": "rimraf -rf dist/",
