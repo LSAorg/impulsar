@@ -31,3 +31,29 @@ jobs:
         with:
           branch: gh-pages
           folder: 'packages/example/dist/'
+  deploy_server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Github Checkout' 
+        uses: actions/checkout@v2
+      - name: 'Setup NodeJS'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          cache: 'npm'
+      - name: 'Install NPM Deps'
+        run: npm install
+      - name: 'Bootstrap Packages'
+        run: npm run bootstrap
+      - name: 'Lint Packages'
+        run: npm run lint
+      - name: 'Build Packages'
+        run: npm run build
+      - name: 'Deploy to Heroku'
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "impulsar-server"
+          heroku_email: "anggievelyn@gmail.com"
+          usedocker: true
+          appdir: 'packages/server'
