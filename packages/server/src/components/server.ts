@@ -49,7 +49,7 @@ export class ImpulsarServer {
     this.sampleRate = 1600
 
     // Vosk
-    this.voskModel = new vosk.Model('src/vosk-models/vosk-model-small-es-0.3')
+    this.voskModel = new vosk.Model('vosk-models/vosk-model-small-es-0.3')
 
     // Google Speech
     this.googleSpeechClient = new SpeechClient()

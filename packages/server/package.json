@@ -7,7 +7,7 @@
     "start:local": "NODE_ENVIRONMENT=local NODE_ENVIRONMENT=local nodemon | pino-tiny",
     "start:built": "NODE_ENV=production node dist/index.js | pino-tiny",
     "start": "node index.js",
-    "build": "npm run clean && npm run compile && cp -r public ./dist",
+    "build": "npm run clean && npm run compile && cp -r public ./dist && cp -r vosk-models ./dist",
     "postbuild": "cp package*.json dist/",
     "compile": "tsc",
     "clean": "rimraf -rf dist/",
