@@ -12,6 +12,12 @@ El acceso se realiza a traves del siguiente enlace:
 
 https://lsaorg.github.io/impulsar/
 
+Para poder continuar con el desarrollo es necesario:
+
+-hardware de detección de movimientos (o bien modeladores 3D)
+-Personas señantes que puedan ayudar a cargar nuevas señas
+
+
 
 
 ### Componentes
